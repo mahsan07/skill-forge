@@ -31,6 +31,38 @@ Use `uv sync` and prefix commands with `uv run` if you prefer uv.
 
 The checked-in `examples/evidence-first-qa` package is a complete, valid skill—not a pseudo-example.
 
+## How it works
+
+```mermaid
+flowchart TD
+    E[Concrete user requests<br/>and trigger examples] --> G[Skill generator]
+    G --> M[SKILL.md<br/>name, description, workflow]
+    G --> U[agents/openai.yaml<br/>display metadata + default prompt]
+    G -->|only when requested| R[scripts / references / assets]
+    M --> A[Author edits focused workflow]
+    U --> V[Validation pipeline]
+    R --> V
+    A --> V
+    subgraph CHECKS[Deterministic checks]
+        N[Naming + frontmatter]
+        L[Length + structure]
+        T[Trigger quality]
+        S[Public-data scrub]
+    end
+    V --> N
+    V --> L
+    V --> T
+    V --> S
+    N --> Q[JSON quality report + score]
+    L --> Q
+    T --> Q
+    S --> Q
+    Q -->|findings| A
+    Q -->|clean| P[Forward-test or publish]
+```
+
+Generation creates the smallest valid package; validation then checks whether it is portable, discoverable, concise, and safe to publish. Skill Forge never overwrites an existing skill directory.
+
 ## Quality pipeline
 
 ```mermaid
