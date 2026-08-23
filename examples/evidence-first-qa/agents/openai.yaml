@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence First QA"
+  short_description: "Find reproducible web usability defects"
+  default_prompt: "Use $evidence-first-qa to test this web journey and report evidence-backed defects."

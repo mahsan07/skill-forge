@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skill-forge"
+version = "0.1.0"
+description = "A toolkit for authoring, validating, documenting, and publishing reusable AI agent skills."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "mahsan07" }]
+dependencies = []
+
+[project.scripts]
+skill-forge = "skill_forge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

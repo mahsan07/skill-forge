@@ -1,6 +1,6 @@
 # Roadmap
 
-## Phase 1: contract and local demo
+## Phase 1: runnable local MVP (complete)
 
 - Skill template generator
 - Frontmatter validator
@@ -9,10 +9,8 @@
 - Public-scrub checklist
 - Quality rubric
 
-## Later phases
+## Candidate next phases
 
-- CLI scaffolder
-- Schema validation
 - Fixture-based tests
 - Provider adapters
 - Skill registry and compatibility metadata

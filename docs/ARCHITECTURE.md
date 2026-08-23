@@ -1,21 +1,35 @@
 # Architecture
 
-## Design summary
+```mermaid
+flowchart TD
+    C[skill-forge init] --> M[SKILL.md]
+    C --> U[agents/openai.yaml]
+    C -->|only when requested| R[scripts / references / assets]
+    M --> P[Frontmatter parser]
+    U --> P
+    R --> P
+    P --> N[Naming and structure checks]
+    P --> G[Progressive-disclosure checks]
+    P --> S[Public-scrub patterns]
+    N --> O[JSON quality report]
+    G --> O
+    S --> O
+```
 
-A CLI creates a skill folder, validates metadata, and optionally runs deterministic checks. The skill itself remains plain Markdown plus optional scripts and references.
+## Design rules
 
-## Main components
+- The generator refuses to overwrite an existing skill directory.
+- Generated SKILL.md frontmatter contains only `name` and `description`.
+- UI metadata is separate in `agents/openai.yaml` and quotes all strings.
+- Optional resource directories exist only when requested.
+- Validation returns machine-readable JSON and a process exit code.
 
-- Define concrete trigger examples
-- Choose a focused scope
-- Generate valid metadata
-- Write the minimum reliable workflow
-- Validate and forward-test
+The frontmatter parser intentionally supports the compact flat metadata used by portable skills; it is not a general YAML parser. Public-scrub patterns are explainable heuristics and may produce false positives or miss encoded secrets.
 
-## Initial implementation boundary
+## Progressive disclosure
 
-Start with a local, inspectable implementation. Prefer plain files, small typed schemas, and deterministic commands before introducing a database, hosted service, or provider-specific adapter.
-
-## Verification
-
-Every MVP feature should have at least one fixture, one failure case, and one visible verification artifact. Keep inferred behavior separate from measured behavior.
+```text
+metadata (always visible)
+  -> SKILL.md workflow (loaded when triggered)
+      -> scripts/references/assets (loaded or executed only as needed)
+```
