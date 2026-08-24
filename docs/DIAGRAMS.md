@@ -2,6 +2,10 @@
 
 ## Skill packaging flow
 
+![Skill Forge packaging flow](../assets/architecture-flow.svg)
+
+### Mermaid source
+
 ```mermaid
 flowchart TD
   Author["Define focused skill"] --> Scaffold["Create skill folder"]
@@ -13,6 +17,10 @@ flowchart TD
 ```
 
 ## Authoring sequence
+
+![Skill Forge authoring sequence](../assets/sequence-flow.svg)
+
+### Mermaid source
 
 ```mermaid
 sequenceDiagram
