@@ -18,6 +18,12 @@ Agent builders creating portable skills for Hermes, Codex, or compatible skill s
 
 Create and validate a skill that performs evidence-first exploratory QA on a web app.
 
+## Visual overview
+
+![Skill Forge architecture flow](assets/architecture-flow.svg)
+
+[Open the architecture and sequence diagrams](docs/DIAGRAMS.md).
+
 ## Current status
 
 Public scaffold. The repository defines the product contract and MVP boundaries before implementation begins.
