@@ -1,0 +1,53 @@
+{
+  "fixtures": [
+    {
+      "id": "project-context-handoff",
+      "direction": "input",
+      "suffix": ".md",
+      "text": "# Project Context\n\nRead PROJECT.md before changing implementation. Keep the latest handoff short and grounded in verified evidence. Do not copy raw chats into shared memory. Large source material should be linked instead of pasted. SHARED-MEMORY.md contains only stable, user-approved facts. The phrase owner/tool may appear in prose and must not be mistaken for a file path. Never claim success without verification. If a material constraint is missing, reopen the source instead of guessing.\n",
+      "must_contain": [
+        "PROJECT.md",
+        "Do not copy raw chats into shared memory.",
+        "SHARED-MEMORY.md",
+        "owner/tool",
+        "Never claim success without verification.",
+        "reopen the source instead of guessing"
+      ]
+    },
+    {
+      "id": "verbose-git-log",
+      "direction": "tool_output",
+      "source_command": "git log -3",
+      "text": "commit aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nAuthor: Example Dev <dev@example.com>\nDate:   Tue Sep 22 10:00:00 2026 -0700\n\n    Fix auth expiry boundary\n\n    Preserve the existing API contract.\n    Add a regression test for <= at expiry.\n    Keep the exact 401 error response.\n    Additional implementation notes that are useful for archaeology but not required for the current task.\n\ncommit bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\nAuthor: Example Dev <dev@example.com>\nDate:   Mon Sep 21 09:00:00 2026 -0700\n\n    Add structured handoff receipt\n\n    Record scope, decisions, verification, blockers, and next actions.\n    Avoid replaying the entire previous transcript.\n    Keep large evidence linked rather than copied.\n    More historical details follow here and can be omitted by a lossy mode.\n\ncommit cccccccccccccccccccccccccccccccccccccccc\nAuthor: Example Dev <dev@example.com>\nDate:   Sun Sep 20 08:00:00 2026 -0700\n\n    Open minimum supporting excerpts\n\n    Retrieve only code paths needed for the developer question.\n    Preserve file and symbol evidence in the final answer.\n    Report uncertainty when graph evidence is incomplete.\n    Extra body detail that should not be required to identify this commit.\n",
+      "must_contain": [
+        "Fix auth expiry boundary",
+        "Add structured handoff receipt",
+        "Open minimum supporting excerpts"
+      ]
+    },
+    {
+      "id": "failing-test-output",
+      "direction": "tool_output",
+      "source_command": "pytest -q",
+      "text": "tests/test_a.py::test_a PASSED\ntests/test_b.py::test_b PASSED\ntests/test_c.py::test_c PASSED\ntests/test_auth.py::test_expiry_boundary FAILED\n\n=================================== FAILURES ===================================\n____________________________ test_expiry_boundary ____________________________\nExpected status: 401\nReceived status: 200\nAssertionError: token expiring exactly now must be rejected\n\n=========================== short test summary info ===========================\nFAILED tests/test_auth.py::test_expiry_boundary - AssertionError\n1 failed, 103 passed in 4.31s\n",
+      "must_contain": [
+        "test_expiry_boundary",
+        "Expected status: 401",
+        "Received status: 200",
+        "1 failed, 103 passed"
+      ]
+    },
+    {
+      "id": "assistant-output-precision",
+      "direction": "output",
+      "text": "The bug is in src/auth/middleware.ts. The expiry boundary currently uses < when it must use <=, so a token expiring at the current instant can be accepted incorrectly. Keep the existing API response shape and the exact 401 error message. Do not delete data or introduce a database migration. Add a boundary regression test and run the existing integration suite before reporting the fix complete.",
+      "must_contain": [
+        "src/auth/middleware.ts",
+        "<=",
+        "exact 401 error message",
+        "Do not delete data",
+        "integration suite"
+      ]
+    }
+  ]
+}
