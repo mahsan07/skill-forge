@@ -1,0 +1,44 @@
+{
+  "protocol_version": "0.1",
+  "benchmark": {
+    "id": "token-compression",
+    "display_name": "Token Compression Benchmark",
+    "purpose": "Compare context and response compression without treating smaller output as success unless critical facts survive."
+  },
+  "modules": {
+    "memory": {
+      "strategy": "layered_working_context",
+      "responsibility": "Retain fixture source, critical facts, adapter identity, and verification evidence."
+    },
+    "planning": {
+      "strategy": "comparative_benchmark_plan",
+      "responsibility": "Run identical fixtures through control and compressor adapters."
+    },
+    "capability": {
+      "strategy": "task_conditioned_minimum_capability_set",
+      "responsibility": "Invoke only the compressor required for the current benchmark arm."
+    },
+    "action": {
+      "strategy": "measure_compress_verify_receipt",
+      "responsibility": "Measure before/after size, run the real adapter, verify retained facts, and emit a machine-readable receipt."
+    }
+  },
+  "verification": {
+    "required": [
+      "adapter exits successfully",
+      "critical facts survive exactly",
+      "before and after sizes are recorded",
+      "information loss is reported even when compression ratio is high"
+    ],
+    "metrics": [
+      "bytes_before",
+      "bytes_after",
+      "estimated_tokens_before",
+      "estimated_tokens_after",
+      "estimated_token_reduction_pct",
+      "critical_fact_retention_pct",
+      "latency_ms"
+    ]
+  },
+  "claim_boundary": "Estimated token counts are provider-neutral comparison units, not provider billing tokens. Third-party compression claims are not adopted until the installed adapter is measured on these fixtures."
+}

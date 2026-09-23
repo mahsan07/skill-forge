@@ -9,9 +9,22 @@
 - Public-scrub checklist
 - Quality rubric
 
+## Phase 2: fixture and adapter benchmarking (experimental)
+
+- Token-compression fixtures
+- External stdin and file-rewrite adapters
+- Critical-fact retention checks
+- Before/after size and estimated-token receipts
+- JIT-style benchmark contract
+
+Remaining before Phase 2 is complete:
+
+- Run enabled Caveman, context-compress, and Compressoor adapters on a machine where they are installed
+- Add provider-native tokenizer measurements when credentials/runtime make them available
+- Record reproducible benchmark results without copying third-party headline claims
+
 ## Candidate next phases
 
-- Fixture-based tests
 - Provider adapters
 - Skill registry and compatibility metadata
 
