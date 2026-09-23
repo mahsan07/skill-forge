@@ -8,7 +8,7 @@ Reusable agent skills become unreliable when their triggers are vague, instructi
 
 ## What it provides
 
-Provide templates, validators, examples, and quality checks for small agent skills that expose a clear workflow.
+Provide templates, validators, examples, quality checks, and fixture-based benchmark tooling for small agent skills that expose a clear workflow.
 
 ## Intended users
 
@@ -18,6 +18,14 @@ Agent builders creating portable skills for Hermes, Codex, or compatible skill s
 
 Create and validate a skill that performs evidence-first exploratory QA on a web app.
 
+## Token-compression benchmark
+
+Skill Forge includes a task-adaptive benchmark for comparing real installed context/response compressors without reimplementing them.
+
+It measures before/after size, provider-neutral estimated token units, latency, and exact retention of critical facts. A smaller result fails when a required constraint, command, number, path, or other marked fact disappears.
+
+See [benchmarks/token-compression](benchmarks/token-compression/README.md).
+
 ## Visual overview
 
 ![Skill Forge architecture flow](assets/architecture-flow.svg)
@@ -26,7 +34,7 @@ Create and validate a skill that performs evidence-first exploratory QA on a web
 
 ## Current status
 
-Public scaffold. The repository defines the product contract and MVP boundaries before implementation begins.
+Runnable local MVP with skill generation/validation plus an experimental token-compression adapter benchmark.
 
 ## Documentation
 
