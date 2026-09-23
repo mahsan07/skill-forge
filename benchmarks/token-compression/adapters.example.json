@@ -1,0 +1,50 @@
+{
+  "adapters": {
+    "control": {
+      "kind": "identity",
+      "enabled": true
+    },
+    "context-compress-balanced": {
+      "kind": "stdin_command",
+      "enabled": false,
+      "command": [
+        "context-compress",
+        "filter",
+        "--mode",
+        "balanced",
+        "--cmd",
+        "{source_command}"
+      ]
+    },
+    "context-compress-aggressive": {
+      "kind": "stdin_command",
+      "enabled": false,
+      "command": [
+        "context-compress",
+        "filter",
+        "--mode",
+        "aggressive",
+        "--cmd",
+        "{source_command}"
+      ]
+    },
+    "compressoor": {
+      "kind": "stdin_command",
+      "enabled": false,
+      "command": [
+        "python3",
+        "/path/to/compressoor/skills/compressoor/scripts/compact_prompt.py"
+      ]
+    },
+    "caveman-compress": {
+      "kind": "file_rewrite_command",
+      "enabled": false,
+      "timeout_s": 300,
+      "command": [
+        "python3",
+        "/path/to/caveman/skills/caveman-compress/scripts/cli.py",
+        "{input_file}"
+      ]
+    }
+  }
+}
